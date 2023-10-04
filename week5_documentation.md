@@ -103,7 +103,8 @@ public async void GetRoomUseTypeList()
 GetRoomUseTypeList(): This function is focused on a single responsibility, fetching room use types from the service and populating the RoomUseTypes collection. It adheres to the Single Responsibility Principle.
 
 
-**COULD NOT GET DOXYGEN TO WORK** (watched many videos but references provided did not have much useful information on how to get the updated code comments
+**COULD NOT GET DOXYGEN TO WORK** (watched many videos but references provided did not have much useful information on how to get the updated code comments)  
+
 
 ```
 protected override void OnAppearing()
