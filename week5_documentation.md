@@ -103,18 +103,41 @@ public async void GetRoomUseTypeList()
 GetRoomUseTypeList(): This function is focused on a single responsibility, fetching room use types from the service and populating the RoomUseTypes collection. It adheres to the Single Responsibility Principle.
 
 
-This section is related to your work on clean code and documentation in week 5.
+**COULD NOT GET DOXYGEN TO WORK** (watched many videos but references provided did not have much useful information on how to get the updated code comments
 
-First, choose six rules of clean code and explain them. For each one,
+```
+protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LoadRoomUseTypes();
+    }
+```
+Here i removed the need for comments by having a meaningful function name
 
-* Summarise the rule in your own words.
-* Provide an example from the code that you wrote in week 2 and then refined in week 4.
-* Explain how your code implements the rule. 
+```
+if (string.IsNullOrWhiteSpace(NameEntry.Text))
+		{
+			await DisplayAlert("ERROR", "Enter a valid Room Use Type", "OK");
+			return;
+		}
 
-Second, copy the doxygen comments from your code into your portfolio and provide some 
-descriptive commentary on their purpose and structure. Use screenshots showing the HTML 
-content that is generated from your code to illustrate your explanation.
+		var existingRoomUseType = await App.Database.GetItemAsync(NameEntry.Text);
+		if (existingRoomUseType != null)
+		{
+			await DisplayAlert("ERROR", "Room Use Type already exists", "OK");
+            return;
+```
+Simple code, meaningful names and obvious intentions meantioned in the DisplayAlert so the code is eaasy to understand without the need for comments
 
-Finally, highlight three examples from your code where you have eliminated the need
-for comments by adhering to the principles of clean code.
+```
+public class RoomUseTypes
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public string roomUseType{ get; set; }
+    }
+```
+Meaningful Class and Variable names remove the need for comments
+
+
  
