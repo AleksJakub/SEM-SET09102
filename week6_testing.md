@@ -16,3 +16,25 @@ For each example
 Did you manage to write a test which failed during the final evaluation? If so, that would
 make an excellent example. You should briefly discuss why the writer of the code might 
 have overlooked the particular test case that failed.
+
+
+# Testing
+
+##Testing CreateNewChallenge Method
+
+**Purpose of the Code:**
+This method generates a new word based on the selected game type.
+
+``[Fact]
+public void Test_CreateNewChallenge_ForWordInitialization()
+{
+    // Arrange
+    var gamePage = new GamePage("Easy");
+
+    // Act
+    gamePage.CreateNewChallenge();
+
+    // Assert
+    Assert.NotNull(gamePage.Word);
+    Assert.NotEmpty(gamePage.Word);
+}``
