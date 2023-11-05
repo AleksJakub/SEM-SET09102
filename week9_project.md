@@ -105,15 +105,12 @@ A test to check if we can retrieve security alerts properly. We save two alerts,
 ## Requested Changes
 
 **Adding Doxygen Comments:**
-
 In response to the code review feedback, I added Doxygen comments to the methods and classes, providing clear documentation for each function's purpose, input parameters, and expected output. These comments serve as a helpful reference for developers working with the codebase, promoting better understanding and collaboration within the team.
 
 **Improving Test Scenarios:**
-
 I enhanced the test cases to cover a broader range of scenarios. This included adding tests for edge cases, invalid inputs, and exceptional situations. By expanding the test, we ensure that our code can handle various scenarios, making the application more robust to unexpected conditions.
 
 **Fixing Filtering Functionality:**
-
 I addressed the issue with the filtering functionality, ensuring that the filtering criteria are applied correctly when retrieving security alerts. By reviewing the filtering logic and making adjustments, I improved the accuracy of the search functionality, allowing users to find specific alerts more effectively based on their descriptions.
 
 ## Code Review Issues
