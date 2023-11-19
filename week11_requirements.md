@@ -24,15 +24,15 @@ has improved as before. It would also be good to reflect on any improvements tha
 been made to the agreed team workflow and related procedures. Are things working
 better than they were? What further improvements could be made in the future?
 
-## Marking
 
-The marks for this portfolio entry will be split as follows:
+## Issue description
 
-* Timeliness: 5 marks (one mark will be deducted for each day or partial day that the submission 
-  is late).
-* Description: 1 mark is awarded for the descriptive content. You are guaranteed at least one 
-  question on this entry in the final interview assessment. Please do not skimp on the 
-  descriptive content. 
-* Reflection: 4 marks are awarded for the quality of reflection. Again, you should think of this 
-  as preparation for the interview assessment.
+## Code Description
 
+## Test Code
+
+## Review Requests
+
+## Reviewer Requests
+
+## Reflection
