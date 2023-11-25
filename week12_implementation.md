@@ -1,30 +1,5 @@
 # Project work 4
 
-Week 10 is the fourth in a series in which the goal is to improve your 
-personal software engineering practice. Your portfolio entry has the same general content
-as last week's, including:
-
-* A descriptive summary of the issue that you worked on.
-* Snippets from your code with commentary showing how you have used good software design 
-  practice.
-* A descriptive summary of the test code that you have written.
-* A reflective summary of any changes that were requested during the code review along 
-  with your fixes.
-* A descriptive summary of any issues you found with the code that you were asked to review.
-* A general reflective section that identifies, for example,
-  * New things you have realised this week
-  * Common problems that can arise in a team development situation
-  * How your practice compares to other people's
-  * etc.
-
-Be sure to include links to the original items in the team's GitHub repository.
-
-In the reflective sections this week, you should highlight ways that you persona practice
-has improved as before. It would also be good to reflect on any improvements that have
-been made to the agreed team workflow and related procedures. Are things working
-better than they were? What further improvements could be made in the future?
-
-
 ## Issue description
 As an UNDAC Analyst, I want to view the status of current and completed operations so that I can evaluate the effectiveness of the mission.
 
@@ -80,7 +55,9 @@ public async Task DeleteOperationStatusTestAsync()
 The provided tests thoroughly check how well the OperationStatus class works in the Undac app. First, it sets up a test database and repository and cleans up afterward. Each test method, like AddOperationStatusTestAsync, checks a specific part of the repository's job, from adding and deleting OperationStatus instances to getting lists of them. Clear and simple checks, along with using async/await for smooth testing, make the tests reliable without causing any issues. These tests make sure the OperationStatusRepository in the Undac app can handle adding, deleting, and retrieving OperationStatus instances as expected.
 
 ## Review Requests
+During the code review, feedback was provided on the need for better error messages in case of test failures and more descriptive test method names. Also, there was a suggestion to include assertions for each property of the OperationStatus class. In response, error messages were improved, test method names were made more descriptive, and assertions for each property were added.
 
 ## Reviewer Requests
+The main issue identified in the code review was the need for more informative error messages and assertions in the tests. This was addressed by refining error messages and adding detailed assertions to ensure a clearer understanding of test failures. However, regardless of this I can see massive progress being made from the whole team if compared to the first couple of weeks.
 
 ## Reflection
