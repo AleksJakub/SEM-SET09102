@@ -30,45 +30,54 @@ As an UNDAC Analyst, I want to view the status of current and completed operatio
 
 ## Code Description
 ```
-// This method loads all the Operation Status into the UI
-private async void LoadAllOperationStatus()
-{
-    var operationstatus = await operationstatusRepo.GetAllAsync();
-    allOperationStatus = operationstatus;
-    OperationStatusListView.ItemsSource = allOperationStatus;
-}
-```
-Asynchronous Programming: The LoadAllOperationStatus method is marked as async, indicating its asynchronous nature. This is crucial for preventing UI blocking during potentially time-consuming operations like fetching data.
-Data Binding: The method efficiently uses data binding (OperationStatusListView.ItemsSource) to link the UI with the retrieved operation status data. This adheres to the MVVM (Model-View-ViewModel) pattern, promoting separation of concerns. 
-
-```
+// This method updates the status of the operationstatus
 public async void OnChange(object sender, EventArgs e)
 {
-    if (string.IsNullOrWhiteSpace(NeedTypeEntry.Text) | string.IsNullOrWhiteSpace(LocationEntry.Text))
+    if (string.IsNullOrWhiteSpace(DetailsEntry.Text) | string.IsNullOrWhiteSpace(ProgressEntry.Text))
     {
-        await DisplayAlert("ERROR", "Enter a valid Need Type or Location", "OK");
+        await DisplayAlert("ERROR", "Enter valid Details or Progress", "OK");
         return;
     }
 
-    need.Location = LocationEntry.Text;
-    need.NeedType = NeedTypeEntry.Text;
+    operationstatus.Details = DetailsEntry.Text;
+    operationstatus.Progress = ProgressEntry.Text;
+    await _operationstatusRepo.SaveAsync(operationstatus);
 
-    await _needsRepo.SaveAsync(need);
-
-    if (PickerUrgency.SelectedIndex >= 0)
+    if (PickerStatus.SelectedIndex >= 0)
     {
-        need.Urgency = (string)PickerUrgency.SelectedItem;
+        operationstatus.Status = (string)PickerStatus.SelectedItem;
 
-        await _needsRepo.SaveAsync(need);
+        await _operationstatusRepo.SaveAsync(operationstatus);
         await Navigation.PopAsync();
     }
 }
-
 ```
-Error Handling: The method starts with error handling to ensure that both NeedTypeEntry and LocationEntry are not empty. This is a good practice for validating user input and preventing invalid data from being processed.
-Asynchronous Programming: The method uses async/await for asynchronous operations, specifically when calling _needsRepo.SaveAsync(need). This ensures that the UI remains responsive while waiting for the asynchronous operation to complete.
+
+Error Handling: The method includes error handling by checking if the DetailsEntry and ProgressEntry are empty. If so, it displays an error alert. This is good practice for user input validation.
+Consistent Naming: Variable names (DetailsEntry, ProgressEntry, PickerStatus) follow a consistent naming convention, increasing readabiliity.
+Conditional Flow: The method uses conditional statements to handle different scenarios. For example, it checks if the PickerStatus has an index before updating the status and going back. This helps ensure the method executes only when necessary.
 
 ## Test Code
+```
+[Test]
+public async Task DeleteOperationStatusTestAsync()
+{
+    var testOperationStatus = new OperationStatus
+    {
+        Status = "Completed",
+        Progress = "resources allocated",
+        Details = "systems down, need fixed immediately"
+    };
+    await repo.SaveAsync(testOperationStatus);
+
+    await repo.DeleteAsync(await repo.GetAsync(testOperationStatus.Id));
+    var readOperationStatus2 = await repo.GetAsync(testOperationStatus.Id);
+
+    Assert.That(readOperationStatus2, Is.Null, " Test OperationStatus was not deleted");
+}
+```
+
+The provided tests thoroughly check how well the OperationStatus class works in the Undac app. First, it sets up a test database and repository and cleans up afterward. Each test method, like AddOperationStatusTestAsync, checks a specific part of the repository's job, from adding and deleting OperationStatus instances to getting lists of them. Clear and simple checks, along with using async/await for smooth testing, make the tests reliable without causing any issues. These tests make sure the OperationStatusRepository in the Undac app can handle adding, deleting, and retrieving OperationStatus instances as expected.
 
 ## Review Requests
 
