@@ -26,22 +26,20 @@ better than they were? What further improvements could be made in the future?
 
 
 ## Issue description
-As an UNDAC Disaster Management Coordinator, I want to view a list of current needs so that I can make priority judgements
+As an UNDAC Analyst, I want to view the status of current and completed operations so that I can evaluate the effectiveness of the mission.
 
 ## Code Description
 ```
-// Constructor for the AllNeedsPage class
-public AllNeedsPage(INeedRepository repository)
+// This method loads all the Operation Status into the UI
+private async void LoadAllOperationStatus()
 {
-    InitializeComponent();
-    needsRepo = repository;
-
-    NeedTypeSearchBar.TextChanged += FilterNeeds;
-    LocationSearchBar.TextChanged += FilterNeeds;
-    UrgencySearchBar.TextChanged += FilterNeeds;
+    var operationstatus = await operationstatusRepo.GetAllAsync();
+    allOperationStatus = operationstatus;
+    OperationStatusListView.ItemsSource = allOperationStatus;
 }
 ```
-Dependency Injection: The constructor uses dependency injection by accepting an INeedRepository parameter. This shows a coupled design, making the class more testable and allowing for easier substitution.
+Asynchronous Programming: The LoadAllOperationStatus method is marked as async, indicating its asynchronous nature. This is crucial for preventing UI blocking during potentially time-consuming operations like fetching data.
+Data Binding: The method efficiently uses data binding (OperationStatusListView.ItemsSource) to link the UI with the retrieved operation status data. This adheres to the MVVM (Model-View-ViewModel) pattern, promoting separation of concerns. 
 
 ```
 public async void OnChange(object sender, EventArgs e)
